@@ -56,7 +56,7 @@ const Register = (): JSX.Element => {
             aria-describedby="keep-mounted-modal-description">
             <Box sx={style}>
                 <Snackbar open={isErrorOccurred} autoHideDuration={6000} onClose={() => setIsErrorOccured(false)}>
-                    <Alert onClose={() => setIsErrorOccured(false)} severity="error" sx={{ width: "100%" }}>
+                    <Alert style={{ whiteSpace: "pre-line" }} onClose={() => setIsErrorOccured(false)} severity="error" sx={{ width: "100%" }}>
                         {errorMsg}
                     </Alert>
                 </Snackbar>
