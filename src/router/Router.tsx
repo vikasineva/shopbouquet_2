@@ -5,6 +5,7 @@ import Home from "../components/Home/Home";
 import ProductInfo from "../components/Catalog/ProductInfo/ProductInfo";
 import { useState } from "react";
 import LayoutContext from "../store/LayoutContext";
+import Checkout from "../components/Order/Checkout";
 
 const MyRouter = (): JSX.Element => {
     const [registerOpened, setRegisterOpened] = useState<boolean>(false);
@@ -33,6 +34,7 @@ const MyRouter = (): JSX.Element => {
                         />
                     </Route>
                     <Route path="product/:productName" element={<ProductInfo />} />
+                    <Route path="order/checkout" element={<Checkout />}></Route>
                 </Route>
                 <Route path="*" element={<Navigate to={"/"} />} />
             </Routes>
