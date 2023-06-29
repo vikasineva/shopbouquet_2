@@ -14,7 +14,7 @@ const ProductInfo = (): JSX.Element => {
     const { productName } = useParams();
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [quantity, setQuantity] = useState<number>(0);
+    const [quantity, setQuantity] = useState<number>(1);
     const [product, setProduct] = useState<IProduct>({
         id: {
             timestamp: 0,
@@ -142,11 +142,11 @@ const ProductInfo = (): JSX.Element => {
                             <span>Розмір:</span>
                         </span>
                         <span className="product-text18">
-                            {product.size.height >= 50 || product.size.width >= 50
-                                ? product.size.height >= 60 || product.size.width >= 60
-                                    ? "L"
-                                    : "M"
-                                : "S"}
+                            {product.size.width < 25 ?
+                                "S" : product.size.width >= 25 && product.size.width < 35 ?
+                                "M" : product.size.width >= 35 && product.size.width < 50 ?
+                                "L" : product.size.width >= 50 ?
+                                "XL" : ""}
                         </span>
                     </div>
                     <span className="product-text19">
