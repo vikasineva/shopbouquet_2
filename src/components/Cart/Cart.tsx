@@ -4,6 +4,8 @@ import cart from "../../store/cart";
 import CloseIcon from "@mui/icons-material/Close";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import cartImage from "../../assets/cart/shopping.png";
+import { useNavigate } from "react-router-dom";
+import user from "../../store/user";
 
 interface CartProps {
     opened: boolean;
@@ -11,6 +13,8 @@ interface CartProps {
 }
 
 const Cart = observer(({ opened, setOpened }: CartProps): JSX.Element => {
+    const navigate = useNavigate();
+
     const style = {
         position: "absolute" as "absolute",
         top: "50%",
@@ -156,13 +160,17 @@ const Cart = observer(({ opened, setOpened }: CartProps): JSX.Element => {
                         <img src={cartImage} height={200}></img>
                     </Box>
                 )}
-                {!!cart.cartItems.length && (
+                {!!cart.cartItems.length && user.isAuthorized && (
                     <Box sx={{ display: "flex", mt: "auto", justifyContent: "space-between", alignItems: "center" }}>
                         <Typography
                             sx={{ fontFamily: "Open Sans", fontWeight: 700, fontSize: "20px", lineHeight: "25px" }}>
                             Загальна сума: {cart.totalPrice} грн
                         </Typography>
                         <Box
+                            onClick={() => {
+                                setOpened(false);
+                                navigate("order/checkout");
+                            }}
                             sx={{
                                 px: 4,
                                 fontFamily: "Open Sans",
